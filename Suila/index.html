@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Suila 水啦 — 免費・台灣製作的影片剪輯 App</title>
+<meta name="description" content="Suila（水啦）是一款完全免費、台灣製作的 iOS 影片剪輯 App。招牌多點變速曲線、自動字幕、人臉自動馬賽克——剪好，就水啦！">
+<link rel="canonical" href="https://hanpo.co/Suila/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Suila 水啦 — 免費・台灣製作的影片剪輯 App">
+<meta property="og:description" content="招牌多點變速曲線、自動字幕、人臉自動馬賽克。完全免費，剪好，就水啦！">
+<meta property="og:image" content="https://hanpo.co/Suila/og-cover.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Suila 水啦 — 免費・台灣製作的影片剪輯 App">
+<meta property="og:url" content="https://hanpo.co/Suila/">
+<meta property="og:site_name" content="Suila 水啦">
+<meta property="og:locale" content="zh_TW">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Suila 水啦 — 免費・台灣製作的影片剪輯 App">
+<meta name="twitter:description" content="招牌多點變速曲線、自動字幕、人臉自動馬賽克。完全免費，剪好，就水啦！">
+<meta name="twitter:image" content="https://hanpo.co/Suila/og-cover.jpg">
+<meta name="theme-color" content="#11CDBE">
+<style>
+  :root{
+    --tide:#07232E; --aqua:#11CDBE; --deep-aqua:#0BA89C;
+    --spray:#DFF7F3; --mango:#FF7A45; --paper:#FCFEFD;
+    --ink:#0d2b33; --muted:#5c7a82;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang TC","Noto Sans TC",sans-serif;
+    color:var(--ink);background:var(--paper);line-height:1.65;-webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+
+  /* language switcher */
+  .langbar{position:fixed;top:14px;right:14px;z-index:50;display:flex;gap:2px;
+    background:rgba(7,35,46,.28);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+    border:1px solid rgba(255,255,255,.28);border-radius:999px;padding:4px}
+  .langbar button{appearance:none;border:none;background:transparent;color:#fff;cursor:pointer;
+    font-size:13px;font-weight:600;padding:6px 12px;border-radius:999px;line-height:1;
+    font-family:inherit;opacity:.82;transition:background .15s ease,opacity .15s ease;white-space:nowrap}
+  .langbar button:hover{opacity:1}
+  .langbar button.active{background:rgba(255,255,255,.92);color:var(--tide);opacity:1}
+
+  /* hero */
+  .hero{
+    background:
+      linear-gradient(165deg,rgba(12,135,126,.86) 0%,rgba(15,160,150,.70) 44%,rgba(5,58,52,.95) 100%),
+      url(hero-splash.jpg) center 42%/cover no-repeat;
+    color:#fff;padding:84px 0 96px;position:relative;overflow:hidden;text-align:center;
+  }
+  .hero::after{content:"";position:absolute;right:-120px;top:-120px;width:420px;height:420px;
+    background:radial-gradient(circle,rgba(255,122,69,.5),transparent 62%);filter:blur(8px)}
+  .hero .wrap{position:relative;z-index:1}
+  .badge{display:inline-block;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.35);
+    padding:6px 14px;border-radius:999px;font-size:14px;font-weight:600;letter-spacing:.3px;margin-bottom:22px}
+  .hero h1{font-size:clamp(44px,8vw,84px);font-weight:800;letter-spacing:-1px;line-height:1.05;
+    text-shadow:0 2px 28px rgba(3,40,36,.55),0 1px 3px rgba(3,40,36,.45)}
+  .hero h1 small{display:block;font-size:.32em;font-weight:600;opacity:.92;letter-spacing:2px;margin-top:8px}
+  .hero p.slogan{font-size:clamp(19px,2.6vw,28px);font-weight:600;margin-top:22px;
+    text-shadow:0 1px 14px rgba(3,40,36,.5)}
+  .hero p.desc{max-width:620px;margin:14px auto 0;font-size:17px;opacity:.94;
+    text-shadow:0 1px 10px rgba(3,40,36,.45)}
+  .cta{margin-top:32px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap;align-items:center}
+  .store{display:inline-flex;align-items:center;gap:10px;background:#062028;color:#fff;
+    padding:12px 22px;border-radius:14px;font-weight:600;font-size:16px;border:1px solid rgba(255,255,255,.14)}
+  .store small{display:block;font-size:11px;opacity:.7;font-weight:500;line-height:1}
+  .store b{font-size:17px;line-height:1.2}
+  .store.soon{opacity:.78;cursor:default}
+  .appstore{display:inline-flex;align-items:center;line-height:0;border-radius:13px;transition:transform .15s ease}
+  .appstore:hover{transform:translateY(-2px)}
+  .appstore img{height:52px;width:auto;display:block}
+  .ghost{color:#fff;font-weight:600;font-size:15px;text-decoration:underline;text-underline-offset:3px;opacity:.9}
+  .sponsor{display:inline-flex;align-items:center;justify-content:center;gap:8px;
+    height:52px;min-width:141px;padding:0 22px;border-radius:13px;cursor:pointer;
+    background:#ff6666;color:#fff;font-weight:700;font-size:16px;font-family:inherit;
+    border:1px solid rgba(255,255,255,.18);box-shadow:0 8px 20px -10px rgba(255,102,102,.7);
+    transition:transform .15s ease, filter .15s ease}
+  .sponsor:hover{transform:translateY(-2px);filter:brightness(1.05)}
+  .sponsor svg{width:20px;height:20px;fill:currentColor;flex:0 0 auto;transform-origin:center}
+  .sponsor:hover svg{animation:beat .7s ease-in-out infinite}
+  @keyframes beat{0%,100%{transform:scale(1)}25%{transform:scale(1.28)}40%{transform:scale(1.06)}60%{transform:scale(1.22)}}
+  @media(prefers-reduced-motion:reduce){.sponsor:hover svg{animation:none}}
+  .cta-sub{margin-top:16px}
+  #toast{position:fixed;left:50%;bottom:34px;transform:translate(-50%,18px);
+    background:rgba(7,35,46,.96);color:#fff;border:1px solid rgba(255,255,255,.2);
+    padding:13px 22px;border-radius:13px;font-size:15px;font-weight:600;
+    box-shadow:0 16px 40px -12px rgba(0,0,0,.6);opacity:0;pointer-events:none;
+    transition:opacity .25s ease, transform .25s ease;z-index:200;max-width:90vw;text-align:center}
+  #toast.show{opacity:1;transform:translate(-50%,0)}
+  .pills{margin-top:30px;display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+  .pill{background:rgba(7,35,46,.22);padding:7px 14px;border-radius:10px;font-size:14px;font-weight:600}
+
+  section{padding:64px 0}
+  .eyebrow{color:var(--deep-aqua);font-weight:700;font-size:14px;letter-spacing:1.5px;text-transform:uppercase}
+  h2{font-size:clamp(26px,4vw,38px);font-weight:800;letter-spacing:-.5px;margin:6px 0 8px;color:var(--tide)}
+  .lead{color:var(--muted);font-size:17px;max-width:680px}
+
+  .shots{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:36px}
+  .shot{display:flex;flex-direction:column}
+  .shot .frame{border-radius:18px;overflow:hidden;box-shadow:0 18px 40px -16px rgba(7,35,46,.45);
+    background:#0b2330;aspect-ratio:1242/2688}
+  .shot img{width:100%;height:100%;object-fit:cover;display:block}
+  .shot .cap{text-align:center;margin-top:14px}
+  .shot .cap b{display:block;font-size:16px;font-weight:700;color:var(--tide);line-height:1.3}
+  .shot .cap span{display:block;font-size:14px;color:var(--muted);margin-top:3px;line-height:1.4}
+  .shot .frame{cursor:zoom-in}
+  .shot .frame img{transition:transform .18s ease}
+  .shot .frame:hover img{transform:scale(1.04)}
+  .zoomhint{text-align:center;color:var(--muted);font-size:13px;margin-top:22px;opacity:.85}
+  #lightbox{position:fixed;inset:0;z-index:100;background:rgba(7,35,46,.92);
+    -webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);
+    display:none;align-items:center;justify-content:center;padding:24px;cursor:zoom-out}
+  #lightbox.open{display:flex}
+  #lightbox img{max-width:min(92vw,460px);max-height:92vh;border-radius:20px;
+    box-shadow:0 30px 90px -20px rgba(0,0,0,.65)}
+
+  .hl{background:var(--spray);border-radius:24px;padding:40px;margin-top:40px;
+    display:grid;grid-template-columns:1.3fr 1fr;gap:32px;align-items:center}
+  .hl h3{font-size:26px;color:var(--tide);font-weight:800;margin-bottom:10px}
+  .hl ul{margin:14px 0 0 0;padding-left:0;list-style:none}
+  .hl li{padding:6px 0 6px 28px;position:relative;font-size:16px}
+  .hl li::before{content:"";position:absolute;left:0;top:14px;width:14px;height:14px;border-radius:50%;
+    background:var(--aqua);box-shadow:0 0 0 4px rgba(17,205,190,.22)}
+  .hl .shotbox{border-radius:18px;overflow:hidden;box-shadow:0 20px 44px -18px rgba(7,35,46,.5);aspect-ratio:1242/2688}
+  .hl .shotbox img{width:100%;height:100%;object-fit:cover}
+
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:36px}
+  .card{background:#fff;border:1px solid #e1f0ed;border-radius:18px;padding:26px;
+    transition:transform .15s ease, box-shadow .15s ease}
+  .card:hover{transform:translateY(-3px);box-shadow:0 16px 34px -18px rgba(7,35,46,.3)}
+  .card .ico{width:46px;height:46px;border-radius:13px;display:grid;place-items:center;font-size:24px;
+    background:linear-gradient(150deg,var(--aqua),var(--deep-aqua));margin-bottom:14px}
+  .card.sig .ico{background:linear-gradient(150deg,var(--mango),#ff5a2a)}
+  .card h4{font-size:19px;font-weight:700;color:var(--tide);margin-bottom:6px}
+  .card h4 .tag{font-size:11px;font-weight:700;color:var(--mango);border:1px solid var(--mango);
+    border-radius:6px;padding:1px 6px;margin-left:8px;vertical-align:middle}
+  .card p{color:var(--muted);font-size:15px}
+
+  footer{background:var(--tide);color:#bfe6e1;text-align:center;padding:44px 24px;font-size:14px}
+  footer a{color:#fff;text-decoration:underline;text-underline-offset:3px}
+  footer strong{color:#fff}
+  footer .row{margin-top:10px;opacity:.85}
+
+  .privacy{background:linear-gradient(150deg,var(--spray),#eafaf7);border:1px solid #d4f0ea;
+    border-radius:24px;padding:48px 40px;text-align:center;max-width:780px;margin:0 auto}
+  .privacy .lock{font-size:34px;line-height:1;margin-bottom:12px}
+  .privacy h2{margin:0 0 10px}
+  .privacy p{color:var(--muted);font-size:17px;max-width:600px;margin:0 auto 18px}
+  .privacy a{color:var(--deep-aqua);font-weight:700;text-decoration:none}
+  .privacy a:hover{text-decoration:underline}
+
+  @media(max-width:820px){
+    .shots{grid-template-columns:repeat(2,1fr)}
+    .hl{grid-template-columns:1fr}
+    .grid{grid-template-columns:1fr 1fr}
+  }
+  @media(max-width:520px){ .grid{grid-template-columns:1fr} }
+</style>
+</head>
+<body>
+
+<nav class="langbar" aria-label="Language">
+  <button data-lang="zh-Hant">繁中</button>
+  <button data-lang="zh-Hans">简中</button>
+  <button data-lang="en">EN</button>
+  <button data-lang="ja">日本語</button>
+  <button data-lang="ko">한국어</button>
+  <button data-lang="es">Español</button>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="badge" data-i18n="badge">🇹🇼 台灣製作・完全免費</span>
+    <h1>Suila<small data-i18n="heroSub">水啦・影片剪輯</small></h1>
+    <p class="desc" data-i18n="heroDesc">不收集個人資料、沒有廣告、不做追蹤。你的影片、聲音與專案全部留在裝置上，不會上傳到任何伺服器。</p>
+    <div class="cta">
+      <a class="appstore" href="https://apps.apple.com/app/id6781609534" target="_blank" rel="noopener" aria-label="Download on the App Store"><img src="badges/appstore-zh-Hant.svg" alt="Download on the App Store" width="141" height="52"></a>
+      <button class="sponsor" type="button" onclick="sponsorSoon()">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+        <span data-i18n="sponsor">贊助(申請中)</span>
+      </button>
+    </div>
+    <div class="cta-sub">
+      <a class="ghost" href="privacy.html" target="_blank" rel="noopener" data-i18n="privacy">隱私權政策</a>
+    </div>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <p class="eyebrow" data-i18n="showEyebrow">亮點</p>
+    <h2 data-i18n="showHeading">看看 Suila 能幫你做什麼</h2>
+    <p class="lead" data-i18n="showLead">招牌變速曲線、子母畫面、自訂字型、自動字幕、擷取聲音、人臉馬賽克。</p>
+    <div class="shots">
+      <div class="shot">
+        <div class="frame"><img src="posters/s1-speed.jpg" alt="多點變速曲線"></div>
+        <div class="cap"><b data-i18n="cap1Title">多點變速曲線</b><span data-i18n="cap1Sub">用一條曲線彎折時間</span></div>
+      </div>
+      <div class="shot">
+        <div class="frame"><img src="posters/s4-overlay.jpg" alt="覆疊・子母畫面"></div>
+        <div class="cap"><b data-i18n="cap2Title">覆疊・子母畫面</b><span data-i18n="cap2Sub">疊上第二段影片或照片</span></div>
+      </div>
+      <div class="shot">
+        <div class="frame"><img src="posters/s5-fonts.jpg" alt="自訂字型"></div>
+        <div class="cap"><b data-i18n="cap3Title">自訂字型</b><span data-i18n="cap3Sub">匯入你自己的字型</span></div>
+      </div>
+      <div class="shot">
+        <div class="frame"><img src="posters/s2-captions.jpg" alt="自動字幕"></div>
+        <div class="cap"><b data-i18n="cap4Title">自動字幕</b><span data-i18n="cap4Sub">裝置端，7 種語言</span></div>
+      </div>
+      <div class="shot">
+        <div class="frame"><img src="posters/s6-audio.jpg" alt="擷取影片聲音"></div>
+        <div class="cap"><b data-i18n="cap5Title">擷取影片聲音</b><span data-i18n="cap5Sub">把影片的聲音抽成音軌</span></div>
+      </div>
+      <div class="shot">
+        <div class="frame"><img src="posters/s3-mosaic.jpg" alt="人臉自動馬賽克"></div>
+        <div class="cap"><b data-i18n="cap6Title">人臉自動馬賽克</b><span data-i18n="cap6Sub">自動遮臉，保留主角</span></div>
+      </div>
+    </div>
+    <p class="zoomhint" data-i18n="zoomHint">點任一張圖可放大看</p>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <p class="eyebrow" data-i18n="featEyebrow">完整功能</p>
+    <h2 data-i18n="featHeading">一支 App，把該有的都做齊</h2>
+    <p class="lead" data-i18n="featLead">從剪輯、調色到字幕與隱私遮蔽，全部在裝置端完成。</p>
+    <div class="grid">
+
+      <div class="card sig">
+        <div class="ico">🟦</div>
+        <h4><span data-i18n="f1Title">人臉自動馬賽克</span> <span class="tag">NEW</span></h4>
+        <p data-i18n="f1Body">自動偵測並逐格追蹤人臉，打馬賽克或高斯模糊；可點選保留一位主角不被遮蔽。形狀支援方形／橢圓。</p>
+      </div>
+
+      <div class="card sig">
+        <div class="ico">〽️</div>
+        <h4 data-i18n="f2Title">多點變速曲線</h4>
+        <p data-i18n="f2Body">招牌功能：平滑曲線 + 光流補格慢動作，等速 0.25×–4×，多組預設曲線。</p>
+      </div>
+
+      <div class="card">
+        <div class="ico">💬</div>
+        <h4 data-i18n="f3Title">自動字幕</h4>
+        <p data-i18n="f3Body">裝置端轉錄（繁中・簡中・英・日・韓・西・德），依停頓自動斷句；可手動修正、分割、合併、微調時間。</p>
+      </div>
+
+      <div class="card">
+        <div class="ico">🅰️</div>
+        <h4 data-i18n="f4Title">文字與貼圖</h4>
+        <p data-i18n="f4Body">自由拖曳定位、雙指縮放、雙指旋轉；8 色色盤、圓角底塊、10 種內建字體（含 4 套 CJK）＋可匯入自訂字型、進出場動畫、Emoji 分類網格。</p>
+      </div>
+
+      <div class="card">
+        <div class="ico">🎨</div>
+        <h4 data-i18n="f5Title">濾鏡與調色</h4>
+        <p data-i18n="f5Body">10 組免費電影級 LUT＋強度滑桿，亮度／對比／飽和／色溫；可套單一片段或全部。</p>
+      </div>
+
+      <div class="card">
+        <div class="ico">🔀</div>
+        <h4 data-i18n="f6Title">轉場</h4>
+        <p data-i18n="f6Body">剪接點上的接點按鈕：溶接／黑場／推（上下左右）／滑動（上下左右）／縮放，0.2–1.5 秒，A/B 雙軌即時預覽。</p>
+      </div>
+
+      <div class="card">
+        <div class="ico">🎞️</div>
+        <h4 data-i18n="f7Title">關鍵影格動畫</h4>
+        <p data-i18n="f7Body">位置／縮放／透明度動畫，於播放點加入關鍵影格快照，線性插值，可跳轉／刪除。</p>
+      </div>
+
+      <div class="card">
+        <div class="ico">🖼️</div>
+        <h4 data-i18n="f8Title">覆疊（子母畫面）</h4>
+        <p data-i18n="f8Body">影片或照片疊在主畫面上、自帶聲音進混音；拖曳縮放、方形／圓形遮罩，可與關鍵影格／轉場組合。</p>
+      </div>
+
+      <div class="card">
+        <div class="ico">🧰</div>
+        <h4 data-i18n="f9Title">多軌時間軸</h4>
+        <p data-i18n="f9Body">影片／覆疊／音樂／字幕／貼圖／文字各自獨立軌；雙指縮放、雙向裁剪吸附、長按拖移、完整復原／重做。</p>
+      </div>
+
+      <div class="card">
+        <div class="ico">🎵</div>
+        <h4 data-i18n="f10Title">專案與音樂</h4>
+        <p data-i18n="f10Body">相簿多選匯入（保序）、檔案 App 匯入音樂並自動裁切、從影片擷取聲音、獨立音效軌；專案以檔案套件儲存。</p>
+      </div>
+
+      <div class="card">
+        <div class="ico">📐</div>
+        <h4 data-i18n="f11Title">畫布・安全區・匯出</h4>
+        <p data-i18n="f11Body">9:16／1:1／16:9，黑／白／模糊背景；多平台安全區參考線（Reels／TikTok／Shorts，字幕自動避讓）；4K／1080p／720p 匯出。</p>
+      </div>
+
+      <div class="card">
+        <div class="ico">🌏</div>
+        <h4 data-i18n="f12Title">多語在地化</h4>
+        <p data-i18n="f12Body">繁體中文、簡體中文、英文、日文、韓文、西班牙文，App 內即時切換；含 4 套商用授權 CJK 字型。</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p><strong>Suila 水啦</strong>・<span data-i18n="footSlogan">剪好，就水啦。</span></p>
+  <p class="row" data-i18n="footLine">完全免費・台灣製作 🇹🇼　|　iOS 26＋（iPhone 11 以後）</p>
+  <p class="row"><a href="privacy.html" target="_blank" rel="noopener" data-i18n="privacy">隱私權政策</a></p>
+  <p class="row">© 2026 Hanpo</p>
+</footer>
+
+<div id="lightbox" aria-hidden="true"><img alt=""></div>
+<div id="toast" role="status" aria-live="polite"></div>
+
+<script>
+const I18N = {
+  "zh-Hant": {
+    badge:"🇹🇼 台灣製作・完全免費",
+    heroSub:"水啦・影片剪輯",
+    slogan:"不收集・不追蹤・不上傳",
+    heroDesc:"不收集個人資料、沒有廣告、不做追蹤。你的影片、聲音與專案全部留在裝置上，不會上傳到任何伺服器。",
+    storeSoon:"即將上架",
+    privacy:"隱私權政策",
+    sponsor:"贊助(申請中)", sponsorSoon:"金流服務申請中,謝謝你的支持 🙏",
+    pill1:"iOS 26＋", pill2:"預覽 = 匯出", pill3:"裝置端字幕", pill4:"4K 匯出", pill5:"6 種語言介面",
+    showEyebrow:"亮點",
+    showHeading:"看看 Suila 能幫你做什麼",
+    showLead:"招牌變速曲線、子母畫面、自訂字型、自動字幕、擷取聲音、人臉馬賽克。",
+    cap1Title:"多點變速曲線", cap1Sub:"用一條曲線彎折時間",
+    cap2Title:"覆疊・子母畫面", cap2Sub:"疊上第二段影片或照片",
+    cap3Title:"自訂字型", cap3Sub:"匯入你自己的字型",
+    cap4Title:"自動字幕", cap4Sub:"裝置端，7 種語言",
+    cap5Title:"擷取影片聲音", cap5Sub:"把影片的聲音抽成音軌",
+    cap6Title:"人臉自動馬賽克", cap6Sub:"自動遮臉，保留主角",
+    sigEyebrow:"招牌功能",
+    sigHeading:"多點變速曲線",
+    sigH3:"用一條曲線，自由彎折時間",
+    sigP:"平滑的單調三次曲線，加／刪／拖控制點即時預覽，配合光流補格讓慢動作順暢不延遲。",
+    sigLi1:"等速 0.25×–4×（chips + log2 滑桿）",
+    sigLi2:"多點曲線：Ramp Up/Down、Hero、Peak 預設",
+    sigLi3:"光流補格慢動作（Vision 光流 + Metal warp）",
+    sigLi4:"變速後保留原音（已做變調補償）",
+    featEyebrow:"完整功能",
+    featHeading:"一支 App，把該有的都做齊",
+    featLead:"從剪輯、調色到字幕與隱私遮蔽，全部在裝置端完成。",
+    f1Title:"人臉自動馬賽克", f1Body:"自動偵測並逐格追蹤人臉，打馬賽克或高斯模糊；可點選保留一位主角不被遮蔽。形狀支援方形／橢圓。",
+    f2Title:"多點變速曲線", f2Body:"招牌功能：平滑曲線 + 光流補格慢動作，等速 0.25×–4×，多組預設曲線。",
+    f3Title:"自動字幕", f3Body:"裝置端轉錄（繁中・簡中・英・日・韓・西・德），依停頓自動斷句；可手動修正、分割、合併、微調時間。",
+    f4Title:"文字與貼圖", f4Body:"自由拖曳定位、雙指縮放、雙指旋轉；8 色色盤、圓角底塊、10 種內建字體（含 4 套 CJK）＋可匯入自訂字型、進出場動畫、Emoji 分類網格。",
+    f5Title:"濾鏡與調色", f5Body:"10 組免費電影級 LUT＋強度滑桿，亮度／對比／飽和／色溫；可套單一片段或全部。",
+    f6Title:"轉場", f6Body:"剪接點上的接點按鈕：溶接／黑場／推（上下左右）／滑動（上下左右）／縮放，0.2–1.5 秒，A/B 雙軌即時預覽。",
+    f7Title:"關鍵影格動畫", f7Body:"位置／縮放／透明度動畫，於播放點加入關鍵影格快照，線性插值，可跳轉／刪除。",
+    f8Title:"覆疊（子母畫面）", f8Body:"影片或照片疊在主畫面上、自帶聲音進混音；拖曳縮放、方形／圓形遮罩，可與關鍵影格／轉場組合。",
+    f9Title:"多軌時間軸", f9Body:"影片／覆疊／音樂／字幕／貼圖／文字各自獨立軌；雙指縮放、雙向裁剪吸附、長按拖移、完整復原／重做。",
+    f10Title:"專案與音樂", f10Body:"相簿多選匯入（保序）、檔案 App 匯入音樂並自動裁切、從影片擷取聲音、獨立音效軌；專案以檔案套件儲存。",
+    f11Title:"畫布・安全區・匯出", f11Body:"9:16／1:1／16:9，黑／白／模糊背景；多平台安全區參考線（Reels／TikTok／Shorts，字幕自動避讓）；4K／1080p／720p 匯出。",
+    f12Title:"多語在地化", f12Body:"繁體中文、簡體中文、英文、日文、韓文、西班牙文，App 內即時切換；含 4 套商用授權 CJK 字型。",
+    footSlogan:"剪好，就水啦。",
+    footLine:"完全免費・台灣製作 🇹🇼　|　iOS 26＋（iPhone 11 以後）",
+    zoomHint:"點任一張圖可放大看",
+    privacyTitle:"不收集・不追蹤・不上傳",
+    privacyBody:"Suila 不收集個人資料、沒有廣告、不做追蹤。你的影片、聲音與專案全部留在裝置上，不會上傳到任何伺服器。",
+    privacyLink:"看隱私權政策 →"
+  },
+  "zh-Hans": {
+    badge:"🇹🇼 台湾制作・完全免费",
+    heroSub:"水啦・视频剪辑",
+    slogan:"不收集・不追踪・不上传",
+    heroDesc:"不收集个人信息、没有广告、不做追踪。你的视频、音频与项目全部留在设备上，不会上传到任何服务器。",
+    storeSoon:"即将上架",
+    privacy:"隐私政策",
+    sponsor:"赞助(申请中)", sponsorSoon:"支付服务申请中,谢谢你的支持 🙏",
+    pill1:"iOS 26+", pill2:"预览 = 导出", pill3:"设备端字幕", pill4:"4K 导出", pill5:"6 种语言界面",
+    showEyebrow:"亮点",
+    showHeading:"看看 Suila 能帮你做什么",
+    showLead:"招牌变速曲线、画中画、自定义字体、自动字幕、提取声音、人脸马赛克。",
+    cap1Title:"多点变速曲线", cap1Sub:"用一条曲线弯折时间",
+    cap2Title:"叠加・画中画", cap2Sub:"叠上第二段视频或照片",
+    cap3Title:"自定义字体", cap3Sub:"导入你自己的字体",
+    cap4Title:"自动字幕", cap4Sub:"设备端，7 种语言",
+    cap5Title:"提取视频声音", cap5Sub:"把视频的声音抽成音轨",
+    cap6Title:"人脸自动马赛克", cap6Sub:"自动遮脸，保留主角",
+    sigEyebrow:"招牌功能",
+    sigHeading:"多点变速曲线",
+    sigH3:"用一条曲线，自由弯折时间",
+    sigP:"平滑的单调三次曲线，加／删／拖控制点实时预览，配合光流补帧让慢动作丝滑不卡顿。",
+    sigLi1:"等速 0.25×–4×（chips + log2 滑块）",
+    sigLi2:"多点曲线：Ramp Up/Down、Hero、Peak 预设",
+    sigLi3:"光流补帧慢动作（Vision 光流 + Metal warp）",
+    sigLi4:"变速后保留原声（已做变调补偿）",
+    featEyebrow:"完整功能",
+    featHeading:"一款 App，把该有的都做齐",
+    featLead:"从剪辑、调色到字幕与隐私遮挡，全部在设备端完成。",
+    f1Title:"人脸自动马赛克", f1Body:"自动检测并逐帧追踪人脸，打马赛克或高斯模糊；可点选保留一位主角不被遮挡。形状支持方形／椭圆。",
+    f2Title:"多点变速曲线", f2Body:"招牌功能：平滑曲线 + 光流补帧慢动作，等速 0.25×–4×，多组预设曲线。",
+    f3Title:"自动字幕", f3Body:"设备端转写（繁中・简中・英・日・韩・西・德），按停顿自动断句；可手动修正、分割、合并、微调时间。",
+    f4Title:"文字与贴纸", f4Body:"自由拖动定位、双指缩放、双指旋转；8 色色板、圆角底块、10 种内置字体（含 4 套 CJK）＋可导入自定义字体、入出场动画、Emoji 分类网格。",
+    f5Title:"滤镜与调色", f5Body:"10 组免费电影级 LUT＋强度滑块，亮度／对比／饱和／色温；可套用单个片段或全部。",
+    f6Title:"转场", f6Body:"剪辑点上的接点按钮：溶解／黑场／推（上下左右）／滑动（上下左右）／缩放，0.2–1.5 秒，A/B 双轨实时预览。",
+    f7Title:"关键帧动画", f7Body:"位置／缩放／透明度动画，在播放点加入关键帧快照，线性插值，可跳转／删除。",
+    f8Title:"画中画", f8Body:"视频或照片叠在主画面上、自带声音进混音；拖动缩放、方形／圆形蒙版，可与关键帧／转场组合。",
+    f9Title:"多轨时间轴", f9Body:"视频／画中画／音乐／字幕／贴纸／文字各自独立轨；双指缩放、双向裁剪吸附、长按拖动、完整撤销／重做。",
+    f10Title:"项目与音乐", f10Body:"相册多选导入（保序）、文件 App 导入音乐并自动裁剪、从视频提取声音、独立音效轨；项目以文稿包保存。",
+    f11Title:"画布・安全区・导出", f11Body:"9:16／1:1／16:9，黑／白／模糊背景；多平台安全区参考线（Reels／TikTok／Shorts，字幕自动避让）；4K／1080p／720p 导出。",
+    f12Title:"多语言本地化", f12Body:"繁体中文、简体中文、英文、日文、韩文、西班牙文，App 内即时切换；含 4 套商用授权 CJK 字体。",
+    footSlogan:"剪好，就水啦。",
+    footLine:"完全免费・台湾制作 🇹🇼　|　iOS 26+（iPhone 11 及以后）",
+    zoomHint:"点任一张图可放大查看",
+    privacyTitle:"不收集・不追踪・不上传",
+    privacyBody:"Suila 不收集个人信息、没有广告、不做追踪。你的视频、音频与项目全部留在设备上，不会上传到任何服务器。",
+    privacyLink:"查看隐私政策 →"
+  },
+  "en": {
+    badge:"🇹🇼 Made in Taiwan · Completely free",
+    heroSub:"Video Editor",
+    slogan:"No collecting. No tracking. No uploads.",
+    heroDesc:"No accounts, no ads, no tracking. Your videos, audio, and projects stay on your device and are never uploaded to any server.",
+    storeSoon:"Coming soon to",
+    privacy:"Privacy Policy",
+    sponsor:"Sponsor (soon)", sponsorSoon:"Payment service is being set up — thank you for your support! 🙏",
+    pill1:"iOS 26+", pill2:"Preview = Export", pill3:"On-device captions", pill4:"4K export", pill5:"6-language UI",
+    showEyebrow:"Highlights",
+    showHeading:"See what you can make",
+    showLead:"Signature speed curves, picture-in-picture, custom fonts, auto captions, audio extraction, and face mosaic.",
+    cap1Title:"Multi-point speed curves", cap1Sub:"Bend time with a single curve",
+    cap2Title:"Picture-in-Picture", cap2Sub:"Layer a second clip or photo",
+    cap3Title:"Your own fonts", cap3Sub:"Import any typeface",
+    cap4Title:"Auto captions", cap4Sub:"On-device, 7 languages",
+    cap5Title:"Audio from video", cap5Sub:"Extract any clip's soundtrack",
+    cap6Title:"Auto face mosaic", cap6Sub:"Blur faces, keep your star",
+    sigEyebrow:"Signature feature",
+    sigHeading:"Multi-point speed curves",
+    sigH3:"Bend time with a single curve",
+    sigP:"A smooth monotone cubic curve. Add, delete or drag control points with live preview, with optical-flow interpolation that keeps slow-mo silky and judder-free.",
+    sigLi1:"Constant speed 0.25×–4× (chips + log2 slider)",
+    sigLi2:"Multi-point curves: Ramp Up/Down, Hero, Peak presets",
+    sigLi3:"Optical-flow slow-mo (Vision optical flow + Metal warp)",
+    sigLi4:"Keeps original audio after speed changes (pitch-corrected)",
+    featEyebrow:"Full toolkit",
+    featHeading:"One app with everything you need",
+    featLead:"From editing and color to captions and privacy masking — all done right on your device.",
+    f1Title:"Auto face mosaic", f1Body:"Automatically detects and tracks faces frame by frame to mosaic or Gaussian-blur them; tap to keep one star unmasked. Square or oval shapes.",
+    f2Title:"Multi-point speed curves", f2Body:"Our signature: smooth curves + optical-flow slow-mo, constant speed 0.25×–4×, and ready-made curve presets.",
+    f3Title:"Auto captions", f3Body:"On-device transcription (Chinese, English, Japanese, Korean, Spanish, German) with automatic line breaks at pauses; edit, split, merge and fine-tune timing by hand.",
+    f4Title:"Text & stickers", f4Body:"Drag to place, pinch to scale, two-finger rotate; 8-color palette, rounded backplate, 10 built-in fonts (4 CJK) plus your own imported typefaces, in/out animations, and a categorized emoji grid.",
+    f5Title:"Filters & color", f5Body:"10 free cinematic LUTs with an intensity slider, plus brightness, contrast, saturation and temperature; apply to one clip or all.",
+    f6Title:"Transitions", f6Body:"Junction buttons on cut points: dissolve, fade to black, push and slide (up/down/left/right), and zoom; 0.2–1.5s with live A/B two-track preview.",
+    f7Title:"Keyframe animation", f7Body:"Animate position, scale and opacity; snapshot a keyframe at the playhead, linear interpolation, jump to or delete any keyframe.",
+    f8Title:"Overlay (Picture-in-Picture)", f8Body:"Layer a video or photo over the main clip with its own audio in the mix; drag and scale, square or circle mask, combine with keyframes and transitions.",
+    f9Title:"Multi-track timeline", f9Body:"Separate tracks for video, overlay, music, captions, stickers and text; pinch zoom, two-way trim snapping, long-press drag, full undo/redo.",
+    f10Title:"Projects & music", f10Body:"Multi-select import from Photos (order preserved), import music from Files with auto-trim, extract audio from a video, and a separate sound-effects track; projects saved as document packages.",
+    f11Title:"Canvas · Safe area · Export", f11Body:"9:16 / 1:1 / 16:9 with black, white or blurred backgrounds; multi-platform safe-area guides (Reels / TikTok / Shorts, captions auto-dodge); 4K / 1080p / 720p export.",
+    f12Title:"Multilingual", f12Body:"Traditional & Simplified Chinese, English, Japanese, Korean and Spanish, switchable live in-app; ships with 4 commercially licensed CJK fonts.",
+    footSlogan:"Cut it. Nail it.",
+    footLine:"Completely free · Made in Taiwan 🇹🇼　|　iOS 26+ (iPhone 11 and later)",
+    zoomHint:"Tap any image to enlarge",
+    privacyTitle:"No collecting. No tracking. No uploads.",
+    privacyBody:"No accounts, no ads, no tracking. Your videos, audio, and projects stay on your device and are never uploaded to any server.",
+    privacyLink:"Read the privacy policy →"
+  },
+  "ja": {
+    badge:"🇹🇼 台湾発・完全無料",
+    heroSub:"動画編集",
+    slogan:"収集しない・追跡しない・アップロードしない",
+    heroDesc:"アカウント不要、広告なし、トラッキングなし。動画・音声・プロジェクトはすべて端末内に残り、サーバーへ送信されることはありません。",
+    storeSoon:"近日公開",
+    privacy:"プライバシーポリシー",
+    sponsor:"応援(準備中)", sponsorSoon:"決済サービスを準備中です。応援ありがとう 🙏",
+    pill1:"iOS 26＋", pill2:"プレビュー = 書き出し", pill3:"端末内字幕", pill4:"4K 書き出し", pill5:"6言語対応",
+    showEyebrow:"ハイライト",
+    showHeading:"Suila でできること",
+    showLead:"看板のスピードカーブ、ピクチャインピクチャ、カスタムフォント、自動字幕、音声抽出、顔モザイク。",
+    cap1Title:"多点スピードカーブ", cap1Sub:"1本のカーブで時間を曲げる",
+    cap2Title:"ピクチャインピクチャ", cap2Sub:"2つ目のクリップや写真を重ねる",
+    cap3Title:"自分のフォント", cap3Sub:"好きな書体を読み込む",
+    cap4Title:"自動字幕", cap4Sub:"端末内、7言語対応",
+    cap5Title:"動画から音声を抽出", cap5Sub:"クリップの音声を音声トラックに",
+    cap6Title:"自動顔モザイク", cap6Sub:"顔を自動で隠し、主役は残す",
+    sigEyebrow:"看板機能",
+    sigHeading:"多点スピードカーブ",
+    sigH3:"1本のカーブで、時間を自在に曲げる",
+    sigP:"なめらかな単調三次カーブ。コントロールポイントを追加・削除・ドラッグしてリアルタイムプレビュー。オプティカルフロー補間でスローモーションをなめらかに、カクつかせません。",
+    sigLi1:"等速 0.25×–4×（チップ＋log2 スライダー）",
+    sigLi2:"多点カーブ：Ramp Up/Down・Hero・Peak プリセット",
+    sigLi3:"オプティカルフロー補間スロー（Vision オプティカルフロー＋Metal warp）",
+    sigLi4:"速度変更後も元の音声を保持（ピッチ補正済み）",
+    featEyebrow:"充実の機能",
+    featHeading:"必要なものを、ひとつのアプリに",
+    featLead:"編集・カラーから字幕・プライバシー保護まで、すべて端末内で完結。",
+    f1Title:"自動顔モザイク", f1Body:"顔を自動検出してフレームごとに追跡し、モザイクやガウスぼかしを適用。タップで主役を1人だけ隠さず残せます。四角／楕円に対応。",
+    f2Title:"多点スピードカーブ", f2Body:"看板機能：なめらかなカーブ＋オプティカルフロー補間スロー、等速 0.25×–4×、豊富なカーブプリセット。",
+    f3Title:"自動字幕", f3Body:"端末内で文字起こし（中・英・日・韓・西・独）、停止位置で自動改行。手動での修正・分割・結合・タイミング微調整も可能。",
+    f4Title:"テキストとステッカー", f4Body:"ドラッグで配置、ピンチで拡大縮小、2本指で回転。8色パレット、角丸の背景、10種の内蔵フォント（CJK 4種）＋自分のフォントを読み込み可能、入退場アニメ、絵文字のカテゴリグリッド。",
+    f5Title:"フィルターとカラー", f5Body:"映画品質の無料LUT 10種＋強度スライダー、明るさ／コントラスト／彩度／色温度。1クリップにも全体にも適用可能。",
+    f6Title:"トランジション", f6Body:"カット点のジャンクションボタン：ディゾルブ／ブラック／プッシュ（上下左右）／スライド（上下左右）／ズーム、0.2〜1.5秒、A/B 2トラックでリアルタイムプレビュー。",
+    f7Title:"キーフレームアニメ", f7Body:"位置／拡大縮小／不透明度をアニメ化。再生位置でキーフレームを記録、線形補間、任意のキーフレームへジャンプ・削除。",
+    f8Title:"オーバーレイ（ピクチャインピクチャ）", f8Body:"動画や写真をメイン映像に重ね、音声もミックスに反映。ドラッグ＆拡大縮小、四角／円のマスク、キーフレームやトランジションと組み合わせ可能。",
+    f9Title:"マルチトラックタイムライン", f9Body:"映像／オーバーレイ／音楽／字幕／ステッカー／テキストを独立トラックで管理。ピンチズーム、両端トリムのスナップ、長押しドラッグ、完全な取り消し／やり直し。",
+    f10Title:"プロジェクトと音楽", f10Body:"写真から複数選択でインポート（順序保持）、ファイルアプリから音楽を取り込んで自動トリム、動画から音声を抽出、独立した効果音トラック。プロジェクトはドキュメントパッケージで保存。",
+    f11Title:"キャンバス・セーフエリア・書き出し", f11Body:"9:16／1:1／16:9、黒／白／ぼかし背景。マルチプラットフォームのセーフエリアガイド（Reels／TikTok／Shorts、字幕は自動回避）。4K／1080p／720p 書き出し。",
+    f12Title:"多言語対応", f12Body:"繁体字・簡体字中国語・英語・日本語・韓国語・スペイン語をアプリ内で即時切り替え。商用ライセンスの CJK フォント4種を同梱。",
+    footSlogan:"切って、キメる。",
+    footLine:"完全無料・台湾発 🇹🇼　|　iOS 26＋（iPhone 11 以降）",
+    zoomHint:"画像をタップで拡大",
+    privacyTitle:"収集しない・追跡しない・アップロードしない",
+    privacyBody:"アカウント不要、広告なし、トラッキングなし。動画・音声・プロジェクトはすべて端末内に残り、サーバーへ送信されることはありません。",
+    privacyLink:"プライバシーポリシーを見る →"
+  },
+  "ko": {
+    badge:"🇹🇼 대만 제작 · 완전 무료",
+    heroSub:"영상 편집",
+    slogan:"수집 안 함 · 추적 안 함 · 업로드 안 함",
+    heroDesc:"계정 없음, 광고 없음, 추적 없음. 영상·오디오·프로젝트는 모두 기기에 남으며 어떤 서버에도 업로드되지 않습니다.",
+    storeSoon:"출시 예정",
+    privacy:"개인정보 처리방침",
+    sponsor:"후원(준비 중)", sponsorSoon:"결제 서비스 준비 중입니다. 응원해 주셔서 감사합니다 🙏",
+    pill1:"iOS 26+", pill2:"미리보기 = 내보내기", pill3:"온디바이스 자막", pill4:"4K 내보내기", pill5:"6개 언어 지원",
+    showEyebrow:"하이라이트",
+    showHeading:"Suila로 무엇을 만들 수 있을까",
+    showLead:"대표 속도 곡선, 화면 속 화면, 사용자 글꼴, 자동 자막, 오디오 추출, 얼굴 모자이크.",
+    cap1Title:"다점 속도 곡선", cap1Sub:"하나의 곡선으로 시간을 휘다",
+    cap2Title:"화면 속 화면", cap2Sub:"두 번째 클립이나 사진을 겹치다",
+    cap3Title:"나만의 글꼴", cap3Sub:"원하는 글꼴을 가져오기",
+    cap4Title:"자동 자막", cap4Sub:"온디바이스, 7개 언어",
+    cap5Title:"영상에서 오디오 추출", cap5Sub:"클립의 사운드를 오디오 트랙으로",
+    cap6Title:"자동 얼굴 모자이크", cap6Sub:"얼굴은 가리고 주인공은 남기다",
+    sigEyebrow:"대표 기능",
+    sigHeading:"다점 속도 곡선",
+    sigH3:"곡선 하나로 시간을 자유롭게 휘다",
+    sigP:"부드러운 단조 3차 곡선. 제어점을 추가·삭제·드래그하며 실시간 미리보기, 옵티컬 플로 보간으로 슬로모션을 매끄럽고 끊김 없이.",
+    sigLi1:"등속 0.25×–4× (칩 + log2 슬라이더)",
+    sigLi2:"다점 곡선: Ramp Up/Down, Hero, Peak 프리셋",
+    sigLi3:"옵티컬 플로 슬로모션 (Vision 옵티컬 플로 + Metal warp)",
+    sigLi4:"속도 변경 후에도 원음 유지 (피치 보정 완료)",
+    featEyebrow:"완전한 도구",
+    featHeading:"필요한 모든 것을 한 앱에",
+    featLead:"편집과 색보정부터 자막과 프라이버시 가림까지, 모두 기기에서 처리합니다.",
+    f1Title:"자동 얼굴 모자이크", f1Body:"얼굴을 자동 감지하고 프레임마다 추적해 모자이크 또는 가우시안 블러 처리; 탭 한 번으로 주인공 한 명은 가리지 않고 남길 수 있습니다. 사각형/타원 모양 지원.",
+    f2Title:"다점 속도 곡선", f2Body:"대표 기능: 부드러운 곡선 + 옵티컬 플로 슬로모션, 등속 0.25×–4×, 다양한 곡선 프리셋.",
+    f3Title:"자동 자막", f3Body:"기기 내 전사(중·영·일·한·스페인어·독일어), 멈춤에 맞춰 자동 줄바꿈; 수동 수정·분할·병합·타이밍 미세 조정 가능.",
+    f4Title:"텍스트와 스티커", f4Body:"드래그로 배치, 핀치로 크기 조절, 두 손가락 회전; 8색 팔레트, 둥근 배경판, 10종 내장 글꼴(CJK 4종)＋사용자 글꼴 가져오기, 등장/퇴장 애니메이션, 카테고리별 이모지 그리드.",
+    f5Title:"필터와 색보정", f5Body:"무료 시네마틱 LUT 10종 + 강도 슬라이더, 밝기/대비/채도/색온도; 단일 클립 또는 전체에 적용.",
+    f6Title:"전환", f6Body:"컷 지점의 접합 버튼: 디졸브/블랙/푸시(상하좌우)/슬라이드(상하좌우)/줌, 0.2–1.5초, A/B 2트랙 실시간 미리보기.",
+    f7Title:"키프레임 애니메이션", f7Body:"위치/크기/투명도 애니메이션, 재생 위치에서 키프레임 스냅샷, 선형 보간, 키프레임으로 점프·삭제 가능.",
+    f8Title:"오버레이(화면 속 화면)", f8Body:"영상이나 사진을 메인 화면 위에 겹치고 자체 사운드를 믹스에 포함; 드래그·크기 조절, 사각형/원형 마스크, 키프레임·전환과 조합 가능.",
+    f9Title:"멀티트랙 타임라인", f9Body:"영상/오버레이/음악/자막/스티커/텍스트별 독립 트랙; 핀치 줌, 양방향 트림 스냅, 길게 눌러 드래그, 완전한 실행 취소/다시 실행.",
+    f10Title:"프로젝트와 음악", f10Body:"사진에서 다중 선택 가져오기(순서 유지), 파일 앱에서 음악을 가져와 자동 트림, 영상에서 오디오 추출, 독립 효과음 트랙; 프로젝트는 문서 패키지로 저장.",
+    f11Title:"캔버스 · 안전 영역 · 내보내기", f11Body:"9:16 / 1:1 / 16:9, 검정/흰색/블러 배경; 멀티 플랫폼 안전 영역 가이드(Reels/TikTok/Shorts, 자막 자동 회피); 4K/1080p/720p 내보내기.",
+    f12Title:"다국어 지원", f12Body:"번체·간체 중국어, 영어, 일본어, 한국어, 스페인어를 앱 내에서 즉시 전환; 상업용 라이선스 CJK 글꼴 4종 포함.",
+    footSlogan:"자르면, 끝.",
+    footLine:"완전 무료 · 대만 제작 🇹🇼　|　iOS 26+ (iPhone 11 이후)",
+    zoomHint:"이미지를 탭하면 크게 볼 수 있어요",
+    privacyTitle:"수집 안 함 · 추적 안 함 · 업로드 안 함",
+    privacyBody:"계정 없음, 광고 없음, 추적 없음. 영상·오디오·프로젝트는 모두 기기에 남으며 어떤 서버에도 업로드되지 않습니다.",
+    privacyLink:"개인정보 처리방침 보기 →"
+  },
+  "es": {
+    badge:"🇹🇼 Hecho en Taiwán · Totalmente gratis",
+    heroSub:"Editor de Vídeo",
+    slogan:"No recopilamos. No rastreamos. No subimos.",
+    heroDesc:"Sin cuentas, sin anuncios, sin rastreo. Tus vídeos, audio y proyectos permanecen en tu dispositivo y nunca se suben a ningún servidor.",
+    storeSoon:"Próximamente en",
+    privacy:"Política de privacidad",
+    sponsor:"Apoyar (pronto)", sponsorSoon:"Estamos configurando el servicio de pago. ¡Gracias por tu apoyo! 🙏",
+    pill1:"iOS 26+", pill2:"Vista previa = Exportación", pill3:"Subtítulos en el dispositivo", pill4:"Exportación 4K", pill5:"6 idiomas",
+    showEyebrow:"Destacados",
+    showHeading:"Mira lo que puedes crear",
+    showLead:"Curvas de velocidad insignia, imagen en imagen, fuentes personalizadas, subtítulos automáticos, extracción de audio y mosaico facial.",
+    cap1Title:"Curvas de velocidad multipunto", cap1Sub:"Dobla el tiempo con una sola curva",
+    cap2Title:"Imagen en imagen", cap2Sub:"Superpón un segundo clip o foto",
+    cap3Title:"Tus propias fuentes", cap3Sub:"Importa cualquier tipografía",
+    cap4Title:"Subtítulos automáticos", cap4Sub:"En el dispositivo, 7 idiomas",
+    cap5Title:"Audio desde vídeo", cap5Sub:"Extrae la pista de sonido de un clip",
+    cap6Title:"Mosaico facial automático", cap6Sub:"Difumina caras, conserva a tu protagonista",
+    sigEyebrow:"Función insignia",
+    sigHeading:"Curvas de velocidad multipunto",
+    sigH3:"Dobla el tiempo con una sola curva",
+    sigP:"Una curva cúbica monótona y suave. Añade, elimina o arrastra puntos de control con vista previa en vivo, con interpolación por flujo óptico que mantiene la cámara lenta sedosa y sin tirones.",
+    sigLi1:"Velocidad constante 0,25×–4× (chips + control log2)",
+    sigLi2:"Curvas multipunto: ajustes Ramp Up/Down, Hero, Peak",
+    sigLi3:"Cámara lenta por flujo óptico (flujo óptico de Vision + Metal warp)",
+    sigLi4:"Conserva el audio original tras cambios de velocidad (tono corregido)",
+    featEyebrow:"Kit completo",
+    featHeading:"Una app con todo lo que necesitas",
+    featLead:"De la edición y el color a los subtítulos y el enmascarado de privacidad — todo en tu dispositivo.",
+    f1Title:"Mosaico facial automático", f1Body:"Detecta y rastrea caras fotograma a fotograma para aplicar mosaico o desenfoque gaussiano; toca para dejar a un protagonista sin enmascarar. Formas cuadrada u ovalada.",
+    f2Title:"Curvas de velocidad multipunto", f2Body:"Nuestra función insignia: curvas suaves + cámara lenta por flujo óptico, velocidad constante 0,25×–4× y varios ajustes de curva.",
+    f3Title:"Subtítulos automáticos", f3Body:"Transcripción en el dispositivo (chino, inglés, japonés, coreano, español, alemán) con saltos de línea automáticos en las pausas; corrige, divide, combina y ajusta los tiempos a mano.",
+    f4Title:"Texto y pegatinas", f4Body:"Arrastra para colocar, pellizca para escalar, gira con dos dedos; paleta de 8 colores, fondo redondeado, 10 fuentes integradas (4 CJK) más tus propias tipografías importadas, animaciones de entrada/salida y una cuadrícula de emojis por categorías.",
+    f5Title:"Filtros y color", f5Body:"10 LUT cinematográficos gratuitos con control de intensidad, más brillo, contraste, saturación y temperatura; aplícalos a un clip o a todos.",
+    f6Title:"Transiciones", f6Body:"Botones de unión en los cortes: disolvencia, fundido a negro, empuje y deslizamiento (arriba/abajo/izquierda/derecha) y zoom; 0,2–1,5 s con vista previa A/B en dos pistas.",
+    f7Title:"Animación por fotogramas clave", f7Body:"Anima posición, escala y opacidad; captura un fotograma clave en el cabezal, interpolación lineal, salta o elimina cualquier fotograma clave.",
+    f8Title:"Superposición (imagen en imagen)", f8Body:"Superpón un vídeo o foto sobre el clip principal con su propio audio en la mezcla; arrastra y escala, máscara cuadrada o circular, combínala con fotogramas clave y transiciones.",
+    f9Title:"Línea de tiempo multipista", f9Body:"Pistas independientes para vídeo, superposición, música, subtítulos, pegatinas y texto; zoom con pellizco, ajuste de recorte bidireccional, arrastre con pulsación larga, deshacer/rehacer completo.",
+    f10Title:"Proyectos y música", f10Body:"Importación múltiple desde Fotos (orden conservado), importa música desde Archivos con recorte automático, extrae el audio de un vídeo y una pista de efectos de sonido independiente; los proyectos se guardan como paquetes de documento.",
+    f11Title:"Lienzo · Zona segura · Exportación", f11Body:"9:16 / 1:1 / 16:9 con fondo negro, blanco o desenfocado; guías de zona segura multiplataforma (Reels / TikTok / Shorts, los subtítulos se apartan solos); exportación 4K / 1080p / 720p.",
+    f12Title:"Multilingüe", f12Body:"Chino tradicional y simplificado, inglés, japonés, coreano y español, conmutables al instante en la app; incluye 4 fuentes CJK con licencia comercial.",
+    footSlogan:"Corta y clava.",
+    footLine:"Totalmente gratis · Hecho en Taiwán 🇹🇼　|　iOS 26+ (iPhone 11 y posteriores)",
+    zoomHint:"Toca cualquier imagen para ampliarla",
+    privacyTitle:"No recopilamos. No rastreamos. No subimos.",
+    privacyBody:"Sin cuentas, sin anuncios, sin rastreo. Tus vídeos, audio y proyectos permanecen en tu dispositivo y nunca se suben a ningún servidor.",
+    privacyLink:"Ver la política de privacidad →"
+  }
+};
+
+const SUPPORTED = ["zh-Hant","zh-Hans","en","ja","ko","es"];
+const HTML_KEYS = new Set([]); // none currently need innerHTML
+
+function pickDefault(){
+  const stored = localStorage.getItem("suila_lang");
+  if (stored && SUPPORTED.includes(stored)) return stored;
+  const nav = (navigator.language || "").toLowerCase();
+  if (nav.startsWith("zh")) {
+    return (nav.includes("cn") || nav.includes("hans") || nav.includes("sg")) ? "zh-Hans" : "zh-Hant";
+  }
+  if (nav.startsWith("ja")) return "ja";
+  if (nav.startsWith("ko")) return "ko";
+  if (nav.startsWith("es")) return "es";
+  if (nav.startsWith("en")) return "en";
+  return "zh-Hant";
+}
+
+function applyLang(lang){
+  if (!SUPPORTED.includes(lang)) lang = "zh-Hant";
+  const dict = I18N[lang];
+  document.documentElement.lang = lang;
+  document.querySelectorAll("[data-i18n]").forEach(function(el){
+    const key = el.getAttribute("data-i18n");
+    if (dict[key] == null) return;
+    if (HTML_KEYS.has(key)) el.innerHTML = dict[key];
+    else el.textContent = dict[key];
+  });
+  document.querySelectorAll(".langbar button").forEach(function(btn){
+    btn.classList.toggle("active", btn.getAttribute("data-lang") === lang);
+  });
+  var badge = document.querySelector(".appstore img");
+  if (badge) badge.setAttribute("src", "badges/appstore-" + lang + ".svg");
+  localStorage.setItem("suila_lang", lang);
+}
+
+document.querySelectorAll(".langbar button").forEach(function(btn){
+  btn.addEventListener("click", function(){ applyLang(btn.getAttribute("data-lang")); });
+});
+
+// click any poster to enlarge
+var _lb = document.getElementById("lightbox"), _lbImg = _lb.querySelector("img");
+function openZoom(src){ _lbImg.src = src; _lb.classList.add("open"); }
+_lb.addEventListener("click", function(){ _lb.classList.remove("open"); });
+document.addEventListener("keydown", function(e){ if (e.key === "Escape") _lb.classList.remove("open"); });
+document.querySelectorAll(".shots .frame").forEach(function(f){
+  f.addEventListener("click", function(){ openZoom(f.querySelector("img").getAttribute("src")); });
+});
+
+// Sponsor button: feature not live yet — show a localized "coming soon" toast.
+var _toastTimer;
+function sponsorSoon(){
+  var dict = I18N[document.documentElement.lang] || I18N["zh-Hant"];
+  var t = document.getElementById("toast");
+  t.textContent = dict.sponsorSoon || "Coming soon";
+  t.classList.add("show");
+  clearTimeout(_toastTimer);
+  _toastTimer = setTimeout(function(){ t.classList.remove("show"); }, 2800);
+}
+
+applyLang(pickDefault());
+</script>
+
+</body>
+</html>
